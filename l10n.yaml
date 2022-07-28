@@ -1,0 +1,12 @@
+# Where to find translation files
+arb-dir: lib/l10n
+
+# Which translation is the default/template
+template-arb-file: filesize_en.arb
+
+# What to call generated dart files
+output-localization-file: filesize_localizations.dart
+
+output-class: FilesizeLocalizations
+output-dir: lib/src
+synthetic-package: false

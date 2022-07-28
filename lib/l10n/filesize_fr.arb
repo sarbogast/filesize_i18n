@@ -1,0 +1,8 @@
+{
+  "bytes": "o",
+  "kilobytes": "Ko",
+  "megabytes": "Mo",
+  "gigabytes": "Go",
+  "terabytes": "To",
+  "petabytes": "Po"
+}

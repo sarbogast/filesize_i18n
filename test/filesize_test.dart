@@ -1,46 +1,71 @@
-import 'package:filesize/filesize.dart';
-import 'package:test/test.dart';
+import 'package:filesize_i18n/filesize_i18n.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('10', () {
-    expect(filesize(10), '10 B');
+  testWidgets('Filesize returns proper messages in English',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      Localizations(
+        delegates: FilesizeLocalizations.localizationsDelegates,
+        locale: const Locale('en'),
+        child: Builder(
+          builder: (BuildContext context) {
+            expect(filesize(context, 10), '10 B');
+            expect(filesize(context, '10'), '10 B');
+            expect(filesize(context, 1024), '1 KB');
+            expect(filesize(context, '1024'), '1 KB');
+            expect(filesize(context, 1024 * 1024), '1 MB');
+            expect(filesize(context, 1024 * 1024 * 1024), '1 GB');
+            expect(filesize(context, 1024 * 1024 * 1024 * 1024), '1 TB');
+            expect(filesize(context, 1024 * 1024 * 1024 * 1024 * 1024), '1 PB');
+
+            late ArgumentError exception;
+            try {
+              filesize(context, 'abc');
+            } on ArgumentError catch (e) {
+              exception = e;
+            }
+            expect(exception, isArgumentError);
+
+            // The builder function must return a widget.
+            return const Placeholder();
+          },
+        ),
+      ),
+    );
   });
 
-  test('10 string', () {
-    expect(filesize('10'), '10 B');
-  });
+  testWidgets('Filesize returns proper messages in French',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      Localizations(
+        delegates: FilesizeLocalizations.localizationsDelegates,
+        locale: const Locale('fr'),
+        child: Builder(
+          builder: (BuildContext context) {
+            expect(filesize(context, 10), '10 o');
+            expect(filesize(context, '10'), '10 o');
+            expect(filesize(context, 1024), '1 Ko');
+            expect(filesize(context, '1024'), '1 Ko');
+            expect(filesize(context, 1024 * 1024), '1 Mo');
+            expect(filesize(context, 1024 * 1024 * 1024), '1 Go');
+            expect(filesize(context, 1024 * 1024 * 1024 * 1024), '1 To');
+            expect(filesize(context, 1024 * 1024 * 1024 * 1024 * 1024), '1 Po');
 
-  test('1024', () {
-    expect(filesize(1024), '1 KB');
-  });
+            late ArgumentError exception;
+            try {
+              filesize(context, 'abc');
+            } on ArgumentError catch (e) {
+              exception = e;
+            }
+            expect(exception, isArgumentError);
 
-  test('1024 string', () {
-    expect(filesize('1024'), '1 KB');
-  });
-
-  test('1M', () {
-    expect(filesize(1024 * 1024), '1 MB');
-  });
-
-  test('1G', () {
-    expect(filesize(1024 * 1024 * 1024), '1 GB');
-  });
-
-  test('1T', () {
-    expect(filesize(1024 * 1024 * 1024 * 1024), '1 TB');
-  });
-
-  test('1P', () {
-    expect(filesize(1024 * 1024 * 1024 * 1024 * 1024), '1 PB');
-  });
-
-  test('Exception test', () {
-    late ArgumentError exception;
-    try {
-      filesize('abc');
-    } on ArgumentError catch (e) {
-      exception = e;
-    }
-    expect(exception, isArgumentError);
+            // The builder function must return a widget.
+            return const Placeholder();
+          },
+        ),
+      ),
+    );
   });
 }

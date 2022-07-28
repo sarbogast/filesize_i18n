@@ -1,13 +1,25 @@
-name: filesize
-description: A package to get humanized file sizes. Translate raw file size into human readable strings.
-homepage: https://github.com/synw/filesize
+name: filesize_i18n
+description: A package to get humanized and internationalized file sizes. Translate raw file size into human readable strings.
+homepage: https://github.com/sarbogast/filesize_i18n
 
 version: 2.0.1
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
 
 dev_dependencies:
-  test: ^1.16.8
+  flutter_test:
+    sdk: flutter
   test_cov: ^1.0.1
-  pedantic: ^1.11.0
+  pedantic: ^1.11.1
+
+flutter:
+  generate: true

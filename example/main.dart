@@ -1,12 +1,29 @@
-import 'package:filesize/filesize.dart';
+import 'package:filesize_i18n/filesize_i18n.dart';
+import 'package:flutter/material.dart';
 
 void main() {
-  final fs = filesize(1024);
-  print(fs);
-  final fs2 = filesize(1024 * 1024);
-  print(fs2);
-  final fs3 = filesize(1024 * 1024 * 1024);
-  print(fs3);
-  final fs4 = filesize(1024 * 1024 * 1024 * 1024);
-  print(fs4);
+  runApp(
+    const MaterialApp(
+      localizationsDelegates: [
+        FilesizeLocalizations.delegate,
+      ],
+      supportedLocales: FilesizeLocalizations.supportedLocales,
+      home: HomeScreen(),
+    ),
+  );
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text(
+          filesize(context, 1024 * 1024),
+        ),
+      ),
+    );
+  }
 }
