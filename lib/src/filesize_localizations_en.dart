@@ -1,10 +1,8 @@
-
-
-
 import 'filesize_localizations.dart';
 
 /// The translations for English (`en`).
 class FilesizeLocalizationsEn extends FilesizeLocalizations {
+  /// Create an instance of the translation bundle for English.
   FilesizeLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override

@@ -1,10 +1,8 @@
-
-
-
 import 'filesize_localizations.dart';
 
 /// The translations for French (`fr`).
 class FilesizeLocalizationsFr extends FilesizeLocalizations {
+  /// Create an instance of the translation bundle for French.
   FilesizeLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
