@@ -1,0 +1,26 @@
+{
+  "bytes": "B",
+  "@bytes": {
+    "description": "Byte abbreviation"
+  },
+  "kilobytes": "KB",
+  "@kilobytes": {
+    "description": "Kilobyte abbreviation"
+  },
+  "megabytes": "MB",
+  "@megabytes": {
+      "description": "Megabyte abbreviation"
+  },
+  "gigabytes": "GB",
+  "@gigabytes": {
+      "description": "Gigabyte abbreviation"
+  },
+  "terabytes": "TB",
+  "@terabytes": {
+      "description": "Terabyte abbreviation"
+  },
+  "petabytes": "PB",
+  "@petabytes": {
+      "description": "Petabyte abbreviation"
+  }
+}

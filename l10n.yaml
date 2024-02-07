@@ -10,3 +10,6 @@ output-localization-file: filesize_localizations.dart
 output-class: FilesizeLocalizations
 output-dir: lib/src
 synthetic-package: false
+
+preferred-supported-locales:
+  - en

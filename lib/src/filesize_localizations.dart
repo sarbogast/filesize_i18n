@@ -5,17 +5,22 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'filesize_localizations_de.dart';
 import 'filesize_localizations_en.dart';
 import 'filesize_localizations_fr.dart';
+import 'filesize_localizations_it.dart';
+import 'filesize_localizations_nb.dart';
+import 'filesize_localizations_nl.dart';
+import 'filesize_localizations_sv.dart';
 
-/// Callers can lookup localized strings with an instance of
-/// FilesizeLocalizations returned by `FilesizeLocalizations.of(context)`.
+/// Callers can lookup localized strings with an instance of FilesizeLocalizations
+/// returned by `FilesizeLocalizations.of(context)`.
 ///
-/// Applications need to include `FilesizeLocalizations.delegate()` in their
-/// app's localizationDelegates list, and the locales they support in the app's
-/// supportedLocales list. For example:
+/// Applications need to include `FilesizeLocalizations.delegate()` in their app's
+/// `localizationDelegates` list, and the locales they support in the app's
+/// `supportedLocales` list. For example:
 ///
-/// ```
+/// ```dart
 /// import 'src/filesize_localizations.dart';
 ///
 /// return MaterialApp(
@@ -30,14 +35,14 @@ import 'filesize_localizations_fr.dart';
 /// Please make sure to update your pubspec.yaml to include the following
 /// packages:
 ///
-/// ```
+/// ```yaml
 /// dependencies:
 ///   # Internationalization support.
 ///   flutter_localizations:
 ///     sdk: flutter
 ///   intl: any # Use the pinned version from flutter_localizations
 ///
-///   # rest of dependencies
+///   # Rest of dependencies
 /// ```
 ///
 /// ## iOS Applications
@@ -57,44 +62,30 @@ import 'filesize_localizations_fr.dart';
 /// Select and expand the newly-created Localizations item then, for each
 /// locale your application supports, add a new item and select the locale
 /// you wish to add from the pop-up menu in the Value field. This list should
-/// be consistent with the languages listed in the
-/// FilesizeLocalizations.supportedLocales property.
+/// be consistent with the languages listed in the FilesizeLocalizations.supportedLocales
+/// property.
 abstract class FilesizeLocalizations {
-  /// Construct an instance of FilesizeLocalizations. For example:
-  /// ```
-  /// FilesizeLocalizations localizations = FilesizeLocalizations('en');
-  /// ```
-  FilesizeLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  FilesizeLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
-  /// The locale of the localized data
   final String localeName;
 
-  /// Lookup FilesizeLocalizations for the widget tree that corresponds to the
-  /// given BuildContext.
   static FilesizeLocalizations? of(BuildContext context) {
-    return Localizations.of<FilesizeLocalizations>(
-        context, FilesizeLocalizations);
+    return Localizations.of<FilesizeLocalizations>(context, FilesizeLocalizations);
   }
 
-  /// A [LocalizationsDelegate] that uses FilesizeLocalizations.load to create
-  /// an instance of FilesizeLocalizations for a given locale.
-  static const LocalizationsDelegate<FilesizeLocalizations> delegate =
-      _FilesizeLocalizationsDelegate();
+  static const LocalizationsDelegate<FilesizeLocalizations> delegate = _FilesizeLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
   ///
-  /// Returns a list of localizations delegates containing this delegate along
-  /// with GlobalMaterialLocalizations.delegate,
-  /// GlobalCupertinoLocalizations.delegate,
+  /// Returns a list of localizations delegates containing this delegate along with
+  /// GlobalMaterialLocalizations.delegate, GlobalCupertinoLocalizations.delegate,
   /// and GlobalWidgetsLocalizations.delegate.
   ///
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -104,7 +95,12 @@ abstract class FilesizeLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('fr')
+    Locale('de'),
+    Locale('fr'),
+    Locale('it'),
+    Locale('nb'),
+    Locale('nl'),
+    Locale('sv')
   ];
 
   /// Byte abbreviation
@@ -144,38 +140,39 @@ abstract class FilesizeLocalizations {
   String get petabytes;
 }
 
-class _FilesizeLocalizationsDelegate
-    extends LocalizationsDelegate<FilesizeLocalizations> {
+class _FilesizeLocalizationsDelegate extends LocalizationsDelegate<FilesizeLocalizations> {
   const _FilesizeLocalizationsDelegate();
 
   @override
   Future<FilesizeLocalizations> load(Locale locale) {
-    return SynchronousFuture<FilesizeLocalizations>(
-        lookupFilesizeLocalizations(locale));
+    return SynchronousFuture<FilesizeLocalizations>(lookupFilesizeLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'fr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['de', 'en', 'fr', 'it', 'nb', 'nl', 'sv'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_FilesizeLocalizationsDelegate old) => false;
 }
 
-/// A factory for a specific FilesizeLocalizations class
 FilesizeLocalizations lookupFilesizeLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en':
-      return FilesizeLocalizationsEn();
-    case 'fr':
-      return FilesizeLocalizationsFr();
+    case 'de': return FilesizeLocalizationsDe();
+    case 'en': return FilesizeLocalizationsEn();
+    case 'fr': return FilesizeLocalizationsFr();
+    case 'it': return FilesizeLocalizationsIt();
+    case 'nb': return FilesizeLocalizationsNb();
+    case 'nl': return FilesizeLocalizationsNl();
+    case 'sv': return FilesizeLocalizationsSv();
   }
 
   throw FlutterError(
-      'FilesizeLocalizations.delegate failed to load unsupported locale '
-      '"$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'FilesizeLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

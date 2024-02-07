@@ -1,8 +1,8 @@
 import 'filesize_localizations.dart';
 
-/// The translations for English (`en`).
-class FilesizeLocalizationsEn extends FilesizeLocalizations {
-  FilesizeLocalizationsEn([String locale = 'en']) : super(locale);
+/// The translations for Norwegian Bokmål (`nb`).
+class FilesizeLocalizationsNb extends FilesizeLocalizations {
+  FilesizeLocalizationsNb([String locale = 'nb']) : super(locale);
 
   @override
   String get bytes => 'B';
